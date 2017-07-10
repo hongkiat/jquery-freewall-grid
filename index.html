@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Nested &amp; Normal Grid &dash; Hongkiat.com</title>
+
+<!--  jquery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../_nav/js/jquery.js"><\/script>')</script>
+
+<!-- demo scripts -->
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/freewall.js"></script>
+
+<!-- nav script -->
+<script src="../_nav/js/nav.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<!-- nav script -->
+<div class="demo-meta">
+	<h1 class="demo-title">Nested &amp; Normal Grid with jQuery</h1>
+	<p class="demo-desc">This demo shows Grid layout that is built with jQuery plugin called FreeWall</p>
+</div>
+
+<!-- demo content -->
+<div class="demo-wrapper">
+	<div class="layout">
+		<h2>Normal grid</h2>
+		<div class="free-wall">
+			<div class="brick size320"></div>
+			<div class="brick size320"></div>
+			<div class="brick size320"></div>
+			<div class="brick size320"></div>
+			<div class="brick size320"></div>
+			<div class="brick size320"></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var colour = [
+		"rgb(142, 68, 173)",
+		"rgb(243, 156, 18)",
+		"rgb(211, 84, 0)",
+		"rgb(0, 106, 63)",
+		"rgb(41, 128, 185)",
+		"rgb(192, 57, 43)",
+		"rgb(135, 0, 0)",
+		"rgb(39, 174, 96)"
+	];
+	
+	$(".free-wall .size320").each(function() {
+		var backgroundColor = colour[colour.length * Math.random() << 0];
+		var bricks = $(this).find(".brick");
+		!bricks.length && (bricks = $(this));
+		bricks.css({
+			backgroundColor: backgroundColor
+		});
+	});
+
+	$(function() {
+		$(".free-wall").each(function() {
+			var wall = new freewall(this);
+			wall.reset({
+				selector: '.size320',
+				cellW: function(container) {
+					var cellWidth = 320;
+					if (container.hasClass('size320')) {
+						cellWidth = container.width()/2;
+					}
+					return cellWidth;
+				},
+				cellH: function(container) {
+					var cellHeight = 320;
+					if (container.hasClass('size320')) {
+						cellHeight = container.height()/2;
+					}
+					return cellHeight;
+				},
+				fixSize: 0,
+				gutterY: 20,
+				gutterX: 20,
+				onResize: function() {
+					wall.fitWidth();
+				}
+			})
+			wall.fitWidth();
+		});
+		$(window).trigger("resize");
+	});
+</script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html>
+	<head>
+		<title>Nested &amp; Normal Grid - Hongkiat Demo</title>
+	</head>
+	<body>
+		<div class='header'>
+			<div class="clearfix">
+				<div class="float-left">
+						<h1><a href="http://hongkiat.com">Hongkiat</a></h1>
+				</div>
+			</div>
+		</div>
+		<div class="layout">
+			<h2>Normal grid</h2>
+			<div class="free-wall">
+				<div class="brick size320"></div>
+				<div class="brick size320"></div>
+				<div class="brick size320"></div>
+				<div class="brick size320"></div>
+				<div class="brick size320"></div>
+				<div class="brick size320"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			
+			var colour = [
+				"rgb(142, 68, 173)",
+				"rgb(243, 156, 18)",
+				"rgb(211, 84, 0)",
+				"rgb(0, 106, 63)",
+				"rgb(41, 128, 185)",
+				"rgb(192, 57, 43)",
+				"rgb(135, 0, 0)",
+				"rgb(39, 174, 96)"
+			];
+			
+			$(".free-wall .size320").each(function() {
+				var backgroundColor = colour[colour.length * Math.random() << 0];
+				var bricks = $(this).find(".brick");
+				!bricks.length && (bricks = $(this));
+				bricks.css({
+					backgroundColor: backgroundColor
+				});
+			});
+
+			$(function() {
+				$(".free-wall").each(function() {
+					var wall = new freewall(this);
+					wall.reset({
+						selector: '.size320',
+						cellW: function(container) {
+							var cellWidth = 320;
+							if (container.hasClass('size320')) {
+								cellWidth = container.width()/2;
+							}
+							return cellWidth;
+						},
+						cellH: function(container) {
+							var cellHeight = 320;
+							if (container.hasClass('size320')) {
+								cellHeight = container.height()/2;
+							}
+							return cellHeight;
+						},
+						fixSize: 0,
+						gutterY: 20,
+						gutterX: 20,
+						onResize: function() {
+							wall.fitWidth();
+						}
+					})
+					wall.fitWidth();
+				});
+				$(window).trigger("resize");
+			});
+		</script>
+	</body>
+</html> -->
